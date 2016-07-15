@@ -5,6 +5,11 @@
 The Maritime Chart Service widgets are widgets and dojo classes that illustrate how web applications can consume and interact with the Maritime Chart Service exposed by the ArcGIS for Maritime: Server product.
 The widgets can be used directly within Web App Builder for ArcGIS. Alternatively, the source code for these widgets is available here for reuse/modification and to integrate it within custom web apps outside of the Web App Builder for ArcGIS framework.
 
+What's new with this version
+* Identify is not a on-panel widget that contains both a single click identify and a rectangle identify option
+* Compatible with WAB 1.3 and 2.0
+* Supports JS API 3.17
+
 ![App](maritimechartservice-sample-viewer.png)
 
 ## Sections
@@ -40,9 +45,10 @@ The following are custom Web App Builder widgets that use the maritime chart ser
 
 
 ## Requirements
-* Web App Builder for ArcGIS (Developer Edition) 1.1 or greater for the Web App builder widgets. 
-* Maritime Chart Service widgets require JS API 3.11 or less. 
-* ArcGIS for Maritime Server 10.3.1
+* Web App Builder for ArcGIS (Developer Edition) 1.3 or greater for the Web App builder widgets. 
+* Maritime Chart Service widgets require JS API 3.12 or greater. 
+* ArcGIS for Maritime Server 10.4.0 or greater
+
 
 ## Deployment
 
@@ -54,22 +60,12 @@ Adding Widgets to you Web AppBuilder Environment:
   * Copy the contents of the `src\widgets\` folder to `%webappbuilder_install%\client\stemapp\widgets\`
 4. The Web App Builder widgets depend on the modules in the libs folder.
   * Copy the contents of `src\libs\` folder to `<webappbuilder folder>\client\stemapp\libs\`
-5. The Identify widget is an off-panel web app builder widget.
-  * Copy the file `src\config.json` to the `<webappbuilder folder>\client\stemapp\predefined-apps\default\` folder (replace the `config.json` file there).
-6. The Identify widget only supports JSAPI 3.11 and below.
-  * Copy the file `src\env.js` to the `<webappbuilder folder>\client\stemapp\` folder (replace the `env.js` file there).
-7. This example uses dojo bootstrap for the Display Settings widget.
-  * Copy the file `src\init.js` to the `<webappbuilder folder>\client\stemapp\` folder (replace the `init.js` file there).
+5. Add the following two lines of code in your <webappbuilder folder>\client\stemapp\init.js file in two places where dojoConfig.packages are referenced. 
+      {
+          name: "bootstrap",
+          location: "//rawgit.com/xsokev/Dojo-Bootstrap/master"
+      },
 
-Deploying your Web Application:
-
-These steps address a known limit with our support for JSAPI 3.11 when deploying your app on a web server.
-
-1. See Deploy app for additional information https://developers.arcgis.com/web-appbuilder/guide/xt-deploy-app.htm
-2. After you have downloaded your app you must update your env.js file with the correct JSAPI reference.
-3. Search your env.js file for 3.13 and replace it with 3.11.
-4. Save your changes.
-5. Your app is ready to be deployed on your web server.
 
 ### General Help
 [New to Github? Get started here.](http://htmlpreview.github.com/?https://github.com/Esri/esri.github.com/blob/master/help/esri-getting-to-know-github.html)
