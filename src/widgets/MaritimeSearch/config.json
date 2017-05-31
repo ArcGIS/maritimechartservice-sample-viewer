@@ -1,4 +1,3 @@
 {
-  "widgetName": "MaritimeSearch",
-  "s57ServiceUrl": "http://nsdemo.esri.com/arcgis/rest/services/SampleWorldCities/MapServer/exts/Maritime%20Chart%20Service/MapServer"
+  "widgetName": "MaritimeSearch"
 }

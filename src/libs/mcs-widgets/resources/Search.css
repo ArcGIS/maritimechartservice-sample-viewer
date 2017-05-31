@@ -1,3 +1,115 @@
-.search {
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css';
+<span>
+.mcs-search .search-result {
+	font-size: 16px;
+	border: 1px solid #E5E5E5;
+}
+.mcs-search .search-result .btn {
+	width: 100%;
+	padding: 9px 10px;
+	background: #f7f7f7;
+    background: -moz-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#e0e0e0));
+    background: -webkit-linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+    background: -o-linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+    background: -ms-linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+    background: linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+	border: 1px solid #E5E5E5;
+	cursor: pointer;
+	border-radius: 0;
+	text-align: left;
+}
+.mcs-search .search-result .btn .badge {
+    float: right;
+}
+.mcs-search .search-result .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+.mcs-search .search-result hr {
+	border-top: 1px solid #eee;
+}
 
+.mcs-search .search-result .row-actions {
+	position: absolute;
+    right: 0;
+    margin-top: -68px;
+}
+.mcs-search .search-result .row-actions .btn {
+	width: 40%;
+}
+
+.mcs-search .search-result .row-actions .btn2 {
+	width: 50%;
+	position: relative;
+	top: 50px;
+}
+
+.mcs-search .search-result .attr-value {
+    font-weight: 600;
+    padding-bottom: 4px;
+}
+.mcs-search .search-result .attr-name {
+    font-size: 75%;
+    color: #969696;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+
+.mcs-search .search-result .collapse {
+	padding: 8px;
+}
+
+.mcs-search .detail-result {
+	font-size: 16px;
+	border: 1px solid #E5E5E5;
+}
+
+.mcs-search .detail-result .btn {
+	width: 100%;
+	padding: 9px 10px;
+	background: #f7f7f7;
+    background: -moz-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#e0e0e0));
+    background: -webkit-linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+    background: -o-linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+    background: -ms-linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+    background: linear-gradient(top, #f7f7f7 0%,#e0e0e0 100%);
+	border: 1px solid #E5E5E5;
+	cursor: pointer;
+	border-radius: 0;
+}
+.mcs-search .detail-result .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+.mcs-search .detail-result hr {
+	border-top: 1px solid #eee;
+}
+
+.mcs-search .detail-result .row-actions {
+	position: absolute;
+    right: 0;
+    margin-top: -75px;
+}
+.mcs-search .detail-result .row-actions .btn {
+	width: 50%;
+	position: relative;
+	top: 50px;
+}
+.mcs-search .detail-result .attr-value {
+    font-weight: 600;
+    padding-bottom: 4px;
+}
+.mcs-search .detail-result .attr-name {
+    font-size: 75%;
+    color: #969696;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+
+.mcs-search .detail-result .collapse {
+	padding: 8px;
 }

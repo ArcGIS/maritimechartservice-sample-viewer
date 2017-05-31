@@ -1,71 +1,42 @@
 <div>
-   <h3>Search</h3>
-   <p>Custom Maritime Search</p>
-   <div id="container_search_master" class="width_99 clear_both margin_top_20 padding_bottom_20">
-                        <div id="container_searchbox" class="container_searchbox   margin_top_20">
-                        <scan>
-                            
-                            <input type="search" id="input_search" class="searchbox_input float_left" name="input_search" size="22" />
-                            <!--<input type="button" id="btn_search" class="searchbox_submit icon img _sprite notext" name="btn_search" value="Search" />-->
-                             <button  id="btn_search" name="btn_search" type="button" data-dojo-attach-event="onClick:_onSearchClick">Search</button>
-                            
-                        </scan>
-                    		<select id="search_type" data-dojo-attach-point="searchtypeSelect" style="width:auto;font-size:10pt">
-                                <option value="default" selected="selected">Object name search</option>
-                                <option value="cell">Dataset name search</option>
-                            </select>
-                        </div>
-                       
-                    </div>
-                    
-                    <div id="container_search_default" class="width_99 display_block clear_both margin_top_20">
-                    	<!--<p class="font_color_999999 font_size_80 line_height_1-25 clear_both">Use the above search box to look for Cells, Layers, Features, and Attributes.</p>-->
-                    	<p class="font_color_999999 font_size_80 line_height_1-25 clear_both" id="container_search_default_text">Use the above search box to search for features based on their Object Name (OBJNAM) attribute. </p>
-                    	
-                    </div>
-                    
-                    <!-- Container: Search Results - START -->
-                    <div id="container_search_results" class="width_99 display_none clear_both">
-                    	<h3 class="default_title clear_both margin_top_20 margin_bottom_0 padding_bottom_5">Results</h3>
-                        
-                        <div class="width_95 display_block clear_both background_white">
-                            <div class="width_full display_block clear_both padding_top_10 text_small">
-                                <a href="#" id="link_showall_accordion_search" class="link_showall_accordion link_showall_accordion_search text_medium">Expand All</a> /
-                                <a href="#" id="link_hideall_accordion_search" class="link_hideall_accordion link_hideall_accordion_search text_medium">Collapse All</a>
-                            </div>
-                            <!-- Clear -->
-                            <div class="clear"></div>                    
-                        </div>
-                        
-                        <!-- Clear -->
-                        <div class="clear"></div>
-                        
-                        <!-- Sub Sections - START -->
-                        <div class="section_content section_content_search section_max_height_dynamic width_95 display_block clear_both position_relative margin_top_5">
-                        	<!-- section_max_height_500 -->
-                            <ul id="accordion_search" class="container_subsections accordion_search width_99 display_block clear_both position_relative noBullets">
-                            </ul>
-                        </div>
-                        <!-- Sub Sections - END -->
-                    </div>
-                    <!-- Container: Search Results - END -->
-                    
-                    <!-- Container: Search Result Details - START -->
-                    <div id="container_search_result_details" class="container_search_result_details width_99 display_none clear_both">
-                        <p class="display_block clear_both margin_top_25 margin_bottom_0 padding_bottom_5"><a id="link_search_details_back" class="padding_top_5" href="#">Search Results</a> <span class="divider">/</span></p>
+    <form class="form-horizontal"  style="margin-top:15px;" data-dojo-attach-event="submit:_onSearchClick">
 
-                        <h3 class="search_details_title font_size_120 font_Avenir font_color_esri16 display_block clear_both margin_top_5 padding_bottom_15">Details:</h3>
-                        <div class="columns width_full display_block clear_both search_result_details search_result_details_max_height_dynamic">
-                            <div class="column width_75 first">
-                            	<ul id="list_search_result_details" class="list_search_result_details noBullets width_99 margin_0 padding_0">
-                                </ul>
-                            </div>
-                            <div class="column width_25 last align_right">
-                                <span class="buttons result_2">
-                                    <!--<button class="btn btn_blue btn_info" title="Info"><span class="img_sprite icon notext btn_info">Info</span></button>-->
-                                    <button id="search_result_details_locate" class="btn btn_blue btn_locate margin_top_5" title="Locate"><span class="img_sprite icon notext  btn_locate">Locate</span></button>
-                                </span>
-                            </div>
-                   		</div>
-                    </div>
+
+            <div class="input-group col-md-12">
+               <input type="Search" placeholder="Search..." class="form-control" id="input_search" />
+               <div class="input-group-btn">
+                   <button class="btn btn-default" type="submit"  >
+                      <span class="glyphicon glyphicon-search"></span>
+                   </button>
+               </div>
+            </div>
+           <div class="input-group col-md-12" style="margin-top:5px;">
+                         <select class="form-control" id="search_type" data-dojo-attach-point="searchtypeSelect">
+                           <option value="default" selected="selected">Object/National Object name search</option>
+                            <option value="cell">Dataset name search</option>
+<!--                            <option value="national">National object name search</option> //-->
+                        </select>
+            
+            </div>
+    </form>
+    <div id="container_search_default">
+      <p id="container_search_default_text">Use the above search box to search for features based on their Object Name (OBJNAM) or National Object Name (NOBJNM) attribute. </p>
+    </div>
+    <div class="panel-group" id="my-accordion">
+    </div>
+    <!-- Container: Search Results - START -->
+    <div id="container_search_results" class="width_99 display_none clear_both" style="display:visible">
+      <h3 class="default_title clear_both margin_top_20 margin_bottom_0 padding_bottom_5">Results/<a id="clear_results" href='#'>Clear Results</a></h3>
+        <!-- Clear -->
+        <div class="clear"></div>
+        
+        <div class="width_99 search-result" id="search_result_main" data-dojo-attach-point="search_result_main"></div>
+    </div>
+    <div id="container_result_details" class="width_99 display_none clear_both" style="display:none">
+      <h3 class="default_title clear_both margin_top_20 margin_bottom_0 padding_bottom_5"><a href='#'>Back to Search Results</a></h3>
+      <h4 class="clear_both margin_top_20 margin_bottom_0 padding_bottom_5">Details</h4>
+        <div class="clear"></div>
+        
+        <div class="width_99 detail-result" id="result_detail_main" data-dojo-attach-point="result_detail_main"></div>
+    </div>
 </div>

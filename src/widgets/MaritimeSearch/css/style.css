@@ -1,7 +1,4 @@
-.maritime-search h3 {
-  font-size: 1.2em;
-}
-.maritime-search h3, p {
-  margin-top: 0;
-}
+
+@import url('../../../libs/mcs-widgets/resources/Search.css');
+
 /* add additional custom styles */
