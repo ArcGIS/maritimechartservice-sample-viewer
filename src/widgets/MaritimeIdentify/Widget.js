@@ -20,10 +20,11 @@ define(['dojo/_base/declare', 'jimu/BaseWidget', 'jimu/dijit/DrawBox', 'libs/mcs
                 for (var j = 0; j < this.map.layerIds.length; j++) {
                     var layerUrl = this.map.getLayer(this.map.layerIds[j]).url;
                     /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
-                    if ((layerUrl.indexOf("/exts/Maritime Chart Service/AISServer") > 0) || (layerUrl.indexOf("/exts/Maritime Chart Server/AISServer") > 0))
+                    if ((layerUrl.indexOf("/exts/MaritimeChartService/AISServer") > 0) || (layerUrl.indexOf("/exts/Maritime Chart Server/AISServer") > 0))
                         this.aisServiceUrl = layerUrl;
-                    else if ((layerUrl.indexOf("/exts/Maritime Chart Service/MapServer") > 0) || (layerUrl.indexOf("/exts/Maritime Chart Server/MapServer") > 0))
+                    else if ((layerUrl.indexOf("/exts/MaritimeChartService/MapServer") > 0) || (layerUrl.indexOf("/exts/Maritime Chart Server/MapServer") > 0))
                         this.s57ServiceUrl = layerUrl;
+// console.log("s57ServiceUrl is " + this.s57ServiceUrl);       
                 }
 
                 if (this.s57ServiceUrl == null) {

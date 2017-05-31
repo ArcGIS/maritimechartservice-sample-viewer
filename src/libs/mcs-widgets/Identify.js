@@ -323,6 +323,9 @@ define([
                 case 'A':
                   feature.attributes.usage = "Overlay";
                   break;
+                case 'B':
+                  feature.attributes.usage = "Bathymetric ENC";
+                  break;
               }
 
               feature.attributes.moreInfo = "";

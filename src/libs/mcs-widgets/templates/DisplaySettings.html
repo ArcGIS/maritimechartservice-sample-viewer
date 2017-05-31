@@ -33,14 +33,42 @@
 		    </div>
 		    <div class="tab-pane" id="misc-tab">
 				<div class="form-group">
+					<label class="col-md-5 control-label" for="area_symbolization">Area symbolization: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="area_symbolization" data-dojo-attach-point="areasymbolizationSelect">
+							<option value="1">Plain boundaries</option>
+							<option value="2" selected="selected">Symbolized boundaries</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-md-5 control-label" for="color_scheme">Color scheme: </label>
 					<div class="col-md-7">
 						<select class="form-control" id="color_scheme" data-dojo-attach-point="colorschemeSelect">
-							<option value="1" selected="selected">DAY_BRIGHT</option>
+							<option value="0">DAY</option>
+							<option value="1">DAY_BRIGHT</option>
 							<option value="2">DAY_BLACKBACK</option>
 							<option value="3">DAY_WHITEBACK</option>
 							<option value="4">DUSK</option>
 							<option value="5">NIGHT</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="data_quality">Data quality: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="data_quality" data-dojo-attach-point="dataQualitySelect">
+							<option value="1" selected="selected">Off</option>
+							<option value="2">On</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="depth_shades">Depth shades: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="depth_shades" data-dojo-attach-point="depthshadesSelect">
+							<option value="1" selected="selected">4</option>
+							<option value="2">2</option>
 						</select>
 					</div>
 				</div>
@@ -55,54 +83,36 @@
 						</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-5 control-label" for="depth_shades">Depth shades: </label>
+					<label class="col-md-5 control-label" for="display_category">Display categories: </label>
+					<div class="col-md-7" data-dojo-attach-point="displayCategorySelect">
+						<label><input type="checkbox" id="dbox1" value="1"/>Base</label>
+						<label><input type="checkbox" id="dbox2" value="2"/>Standard</label>
+						<label><input type="checkbox" id="dbox3" value="4"/>Other</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="frames_on">Display frames: </label>
 					<div class="col-md-7">
-						<select class="form-control" id="depth_shades" data-dojo-attach-point="depthshadesSelect">
-							<option value="1" selected="selected">4</option>
-							<option value="2">2</option>
+						<select class="form-control" id="frames_on" data-dojo-attach-point="framesonSelect">
+							<option value="1">On</option>
+							<option value="2">Off</option>
+							<option value="3">Automatic</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-5 control-label" for="shallow_patterns">Shallow patterns: </label>
+					<label class="col-md-5 control-label" for="optional_deepSoundings">Don't show safe water soundings in conflict with other features: </label>
 					<div class="col-md-7">
-						<select class="form-control" id="shallow_patterns" data-dojo-attach-point="shallowpatternsSelect">
+						<select class="form-control" id="optional_deepSoundings" data-dojo-attach-point="optionalDeepSoundingsSelect">
 							<option value="1" selected="selected">Off</option>
 							<option value="2">On</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-5 control-label" for="point_symbolization">Point symbolization: </label>
+					<label class="col-md-5 control-label" for="isolated_dangers">Isolated dangers in shallow water: </label>
 					<div class="col-md-7">
-						<select class="form-control" id="point_symbolization" data-dojo-attach-point="pointsymbolizationSelect">
-							<option value="1" selected="selected">Simplified</option>
-							<option value="2">Traditional</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-5 control-label" for="area_symbolization">Area symbolization: </label>
-					<div class="col-md-7">
-						<select class="form-control" id="area_symbolization" data-dojo-attach-point="areasymbolizationSelect">
-							<option value="1">Plain boundaries</option>
-							<option value="2" selected="selected">Symbolized boundaries</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-5 control-label" for="frames_on">Cell Extents: </label>
-					<div class="col-md-7">
-						<select class="form-control" id="frames_on" data-dojo-attach-point="framesonSelect">
-							<option value="1">Off</option>
-							<option value="2" selected="selected">On</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-5 control-label" for="scamin">SCAMIN: </label>
-					<div class="col-md-7">
-						<select class="form-control" id="scamin" data-dojo-attach-point="scaminSelect">
+						<select class="form-control" id="isolated_dangers" data-dojo-attach-point="isolatedDangersSelect">
 							<option value="1" selected="selected">Off</option>
 							<option value="2">On</option>
 						</select>
@@ -117,6 +127,59 @@
 						</select>
 					</div>
 			    </div>
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="point_symbolization">Point symbolization: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="point_symbolization" data-dojo-attach-point="pointsymbolizationSelect">
+							<option value="1" selected="selected">Simplified</option>
+							<option value="2">Traditional</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="scamin">SCAMIN: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="scamin" data-dojo-attach-point="scaminSelect">
+							<option value="1" selected="selected">Off</option>
+							<option value="2">On</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="shallow_patterns">Shallow patterns: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="shallow_patterns" data-dojo-attach-point="shallowpatternsSelect">
+							<option value="1" selected="selected">Off</option>
+							<option value="2">On</option>
+						</select>
+					</div>
+				</div>
+<!--				
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="label_contours">Contour labels: </label>
+					<div class="col-md-7">
+						<select class="form-control" id="label_contours" data-dojo-attach-point="labelContoursSelect">
+							<option value="1" selected="selected">Off</option>
+							<option value="2">On</option>
+						</select>
+					</div>
+				</div>
+//-->
+				<div class="form-group">
+					<label class="col-md-5 control-label" for="text_groups">Text groups: </label>
+					<div class="col-md-7" data-dojo-attach-point="textGroupsSelect">
+						<label><input type="checkbox" id="dbox29" value="29">Berth number</label>
+						<label><input type="checkbox" id="dbox30" value="30">Current velocity</label>
+						<label><input type="checkbox" id="dbox26" value="26">Geographic names</label>
+						<label><input type="checkbox" id="dbox28" value="28">Height of islet or land feature</label>
+						<label><input type="checkbox" id="dbox11" value="11">Important text</label>
+						<label><input type="checkbox" id="dbox23" value="23">Light description string</label>
+						<label><input type="checkbox" id="dbox27" value="27">Magnetic variation and swept depth</label>
+						<label><input type="checkbox" id="dbox21" value="21">Names for position reporting</label>
+						<label><input type="checkbox" id="dbox25" value="25">Nature of seabed</label>
+						<label><input type="checkbox" id="dbox24" value="24">Notes on chart data</label>
+					</div>
+				</div>
 			</div>
 		</div>
 	</form>

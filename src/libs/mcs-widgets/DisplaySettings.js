@@ -1,12 +1,12 @@
 //var testsUrl = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/';
 
 define([
-  'dojo/on', 'dojo/topic',
+  'dojo/on', 'dojo/topic', 'dojo/query',
   'dojo/text!./templates/DisplaySettings.html',
 
   'dojo/_base/declare',
    'dojo/_base/lang',
-
+  
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
@@ -19,7 +19,7 @@ define([
   'bootstrap/Tab'
   //'dijit/form/Button'
 ], function(
-  on, topic,
+  on, topic, query,
   template,
 
   declare, lang,
@@ -129,10 +129,31 @@ define([
       this.input_shallow.value = parametersArray[this.findParameter(parametersArray, 'ShallowContour')].value.toString();
       this.input_safety.value = parametersArray[this.findParameter(parametersArray, 'SafetyContour')].value.toString();
       this.input_deep.value = parametersArray[this.findParameter(parametersArray, 'DeepContour')].value.toString();
-      parametersArray = s57CustomLayer.displayParameters.ECDISParameters.StaticParameters.Parameter;
+//console.log(s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter);      
+//console.log(s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.ParameterGroup);      
+//console.log(s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.ParameterGroup[0].Parameter);      
       this.pointsymbolizationSelect.value = parametersArray[this.findParameter(parametersArray, 'PointSymbolizationType')].value.toString();
       this.areasymbolizationSelect.value = parametersArray[this.findParameter(parametersArray, 'AreaSymbolizationType')].value.toString();
-      this.framesonSelect.value = s57CustomLayer.framesOn ? '2' : '1';
+      this.framesonSelect.value = parametersArray[this.findParameter(parametersArray, 'DisplayFrames')].value.toString();
+      this.dataQualitySelect.value = parametersArray[this.findParameter(parametersArray, 'DataQuality')].value.toString();
+      var categories = parametersArray[this.findParameter(parametersArray, 'DisplayCategory')].value.toString().split(',');
+      for (var i = 0, len = categories.length; i < len; i++) {
+        if (categories[i]=="1")
+          this.displayCategorySelect.querySelector("#dbox1").checked = true;
+        if (categories[i]=="2")
+          this.displayCategorySelect.querySelector("#dbox2").checked = true;
+        if (categories[i]=="4")
+          this.displayCategorySelect.querySelector("#dbox3").checked = true;
+      }
+   
+      this.isolatedDangersSelect.value = parametersArray[this.findParameter(parametersArray, 'IsolatedDangers')].value.toString();
+      this.optionalDeepSoundingsSelect.value = parametersArray[this.findParameter(parametersArray, 'OptionalDeepSoundings')].value.toString();
+      var textGroups = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.ParameterGroup[0].Parameter;
+      for (var i = 0, len = textGroups.length; i < len; i++) {
+        if (textGroups[i].value=="2") {
+          this.textGroupsSelect.querySelector("#dbox"+textGroups[i].name).checked = true;
+        }
+      }
       this._initEventHandlers();
     },
     _initEventHandlers: function() {
@@ -172,7 +193,7 @@ define([
           aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
       }));
       this.own(on(this.pointsymbolizationSelect, 'change', function() {
-        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.StaticParameters.Parameter;
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
         parametersArray[_this.findParameter(parametersArray, "PointSymbolizationType")].value = parseInt(_this.pointsymbolizationSelect.value, 10);
         s57CustomLayer.refresh();
         /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
@@ -180,7 +201,7 @@ define([
           aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
       }));
       this.own(on(this.areasymbolizationSelect, 'change', function() {
-        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.StaticParameters.Parameter;
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
         parametersArray[_this.findParameter(parametersArray, "AreaSymbolizationType")].value = parseInt(_this.areasymbolizationSelect.value, 10);
         s57CustomLayer.refresh();
         /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
@@ -188,7 +209,8 @@ define([
           aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
       }));
       this.own(on(this.framesonSelect, 'change', function() {
-        s57CustomLayer.framesOn = (_this.framesonSelect.value === '2');
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+        parametersArray[_this.findParameter(parametersArray, "DisplayFrames")].value = parseInt(_this.framesonSelect.value, 10);
         s57CustomLayer.refresh();
         /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
         if (aisCustomLayer)
@@ -219,6 +241,95 @@ define([
         if (aisCustomLayer)
           aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
         });
+      this.own(on(this.dataQualitySelect, 'change', function() {
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+        parametersArray[_this.findParameter(parametersArray, "DataQuality")].value = parseInt(_this.dataQualitySelect.value, 10);
+        s57CustomLayer.refresh();
+        /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
+        if (aisCustomLayer)
+          aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
+      }));
+      this.own(on(this.isolatedDangersSelect, 'change', function() {
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+        parametersArray[_this.findParameter(parametersArray, "IsolatedDangers")].value = parseInt(_this.isolatedDangersSelect.value, 10);
+        s57CustomLayer.refresh();
+        /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
+        if (aisCustomLayer)
+          aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
+      }));
+/*      
+      this.own(on(this.labelContoursSelect, 'change', function() {
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+        parametersArray[_this.findParameter(parametersArray, "LabelContours")].value = parseInt(_this.labelContoursSelect.value, 10);
+        s57CustomLayer.refresh();
+        ///* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. 
+        if (aisCustomLayer)
+          aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
+      }));
+*/
+      this.own(on(this.optionalDeepSoundingsSelect, 'change', function() {
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+        parametersArray[_this.findParameter(parametersArray, "OptionalDeepSoundings")].value = parseInt(_this.optionalDeepSoundingsSelect.value, 10);
+        s57CustomLayer.refresh();
+        /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
+        if (aisCustomLayer)
+          aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
+      }));
+      this.own(query("input[type='checkbox']", _this.displayCategorySelect).on('change', function() {
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+        var selectedvalues = 0;
+        query("input[type='checkbox']", _this.displayCategorySelect).forEach(function(checkbox) {
+          if(checkbox.checked) {
+            selectedvalues +=　parseInt(checkbox.value);
+          }
+        });
+        var categories;
+        switch(selectedvalues) {
+          case 1:
+            categories = "1";
+            break;
+          case 2:
+            categories = "2";
+            break;
+          case 3:
+            categories = "1,2";
+            break;
+          case 4:
+            categories = "4";
+            break;
+          case 5:
+            categories = "1,4";
+            break;
+          case 6:
+            categories = "2,4";
+            break;
+          case 7:
+            categories = "1,2,4";
+            break;
+          default:
+            categories = "";
+        }
+        parametersArray[_this.findParameter(parametersArray, "DisplayCategory")].value = categories;
+        s57CustomLayer.refresh();
+        /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
+        if (aisCustomLayer)
+          aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
+      }));
+      this.own(query("input[type='checkbox']", _this.textGroupsSelect).on('change', function() {
+        var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.ParameterGroup[0].Parameter;
+        query("input[type='checkbox']", _this.textGroupsSelect).forEach(function(checkbox) {
+          if (checkbox.checked) {
+            parametersArray[_this.findParameter(parametersArray, checkbox.value)].value = 2;
+          }
+          else {
+            parametersArray[_this.findParameter(parametersArray, checkbox.value)].value = 1;
+          }
+        });
+        s57CustomLayer.refresh();
+        /* This AIS Service code is for Esri demo purposes only and does not impact your deployment of this widget. This widget does not depend on an AIS Service being available. */
+        if (aisCustomLayer)
+          aisCustomLayer.displayParameters = s57CustomLayer.displayParameters;
+     }));
     },
     _onApplyClick: function( /*e*/ ) {
       var parametersArray = s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
