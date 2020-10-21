@@ -1,17 +1,29 @@
-20190502 - Updated to support releases through 10.6.1 Patch 4 and 10.7
-
+20201021 - Latest release with support through 10.8.1
 
 
 # Maritime Chart Service sample widgets
 ## (Web App Builder widgets)
 
 
-The Maritime Chart Service widgets are widgets and dojo classes that illustrate how web applications can consume and interact with the Maritime Chart Service exposed by the ArcGIS for Maritime: Server product.
+The Maritime Chart Service widgets are widgets and dojo classes that illustrate how web applications can consume and interact with the Maritime Chart Service exposed by the ArcGIS Maritime Sever Extension product https://www.esri.com/en-us/arcgis/products/arcgis-maritime/deployment/server-extension
+
 The widgets can be used directly within Web App Builder for ArcGIS. Alternatively, the source code for these widgets is available here for reuse/modification and to integrate it within custom web apps outside of the Web App Builder for ArcGIS framework.
 
 To view a sample application created with these widgets please visit http://esriho.maps.arcgis.com/home/index.html and click on one of the Maritime Chart Service applications.
 
-What's new with this version
+Note: Only MCS mapserver services are supported with these widgets.
+
+
+## * What's new with this version
+* Added multiple MCS service support to Display Properties, Identify, and Search widgets.
+* Updated Display Properties configuration steps to support multiple MCS services.
+
+With added support for multiple MCS services you can now author a map with one or more MCS services and use all three sample widgets with each service.  Even if you use the Add Data widget to add another MCS service to your map, you can refresh your MCS sample widgets to recognize and work with any newly added MCS service.
+
+## * Added new Multiple MCS Services support section under deployment
+## * Tested against WAB 2.17 and JavaScript API 3.29
+
+Items included with previous release (20190502)
 ## * Added support for the following display parameters
 * Safe Depth
 * Display Light Sectors
@@ -21,8 +33,6 @@ What's new with this version
 * Date Dependency Range  (new as of 20190502)
 * Updated identify to automatically send display_params in the request.  This will ensure that every identify request honors any changes to the Date Dependency Range. (new as of 20190502)
 
-## * Updated deployment options for Maritime Display Parameters
-## * Tested against WAB 2.10 and JavaScript API 3.27
 
 
 ## Sections
@@ -37,7 +47,7 @@ What's new with this version
 
 ## Features
 
-These Web App Builder widgets illustrates how to build web apps consuming S-57/S-63 web services published from ArcGIS for Maritime: Server in a JavaScript web app.
+These sample Web App Builder widgets illustrate how to build web apps consuming S-57/S-63 web services published from ArcGIS Maritime Server Extension in a JavaScript web app.
 * Allows users to change S-52 based display settings through the JavaScript client
 * Enables users to identify on individual features and view their attribute information.
 * Provides the ability to search based on object name (OBJNAM), national object name (NOBJNM) and dataset names.
@@ -58,9 +68,9 @@ The following are custom Web App Builder widgets that use the maritime chart ser
 
 
 ## Requirements
-* Web App Builder for ArcGIS (Developer Edition) 2.3 or greater for the Web App builder widgets.
+* Web App Builder for ArcGIS (Developer Edition) 2.10 or greater for the Web App builder widgets.
 * Maritime Chart Service widgets require JS API 3.19 or greater. 
-* ArcGIS for Maritime Server 10.4/10.4.1, 10.5/10.5.1, 10.6/10.6.1 and 10.7
+* ArcGIS Maritime Server Extension 10.5/10.5.1, 10.6/10.6.1, 10.7/10.7.1, 10.8/10.8.1
 
 
 ## Deployment
@@ -98,15 +108,28 @@ If the machine is in domain, it is sometimes required to include domain name alo
 ```
 	https://[yourmachinename].[yourdomain]::6443/arcgis/rest/services/SampleWorldCities/MapServer/exts/MaritimeChartService/MapServer
 ```
+## NOTE: WMSServer is not supported by these sample widgets
+
+## NOTE: If your MCS services contain S-63 encrypted datasets, the Identify and Search widget results will not return geometry information due to S-63 legal requirements.  This will change the behavior of the results window for each widget.  For Identify, the zoom to option will zoom into your selection point instead of the feature.  For Search, the zoom to option will be disabled.  S-57 datasets (unencrypted) will not be impacted.
+
 * Save the Web Map
 
 The Web Map is now using the Maritime Chart Service, and can be selected when you create your App in Web AppBuilder
 
-## New deployment options for Maritime Display Parameters:
+## Multiple MCS Services support
+Multiple MCS services support allows you to deploy the sample widgets with a map that contains one or more MCS services.  If you deploy with more than one MCS service, you must set the Display Properties for each service by selecting the service in the drop-down menu and choosing the display parameters you want to expose.  Then you repeat the process for the other MCS services before click done.  There are not additional deployment steps for Identify and Search.
+
+If a user adds another MCS service using the Add Data button after the application has been deployed, all the available display properties for that service will be exposed to the user.  Users must click the refresh button on each MCS sample widget for the newly added service to be available.
+
+Both the Identify and Search widget allow you to select which services you want to use as part of the request.  You can either use Identify and Search on one or all of the available services at once.   The Display Properties widget must be used on one service at a time.  The display options for each service will be retained during your session.
+
+NOTE: There is a known limitation that when you use the add data button to add an MCS Service, you will not be able to remove it.  However, you can uncheck that service from your widgets to keep it from being interacted with.
+
+## Deployment options for Maritime Display Parameters:
 
 When you add the Maritime Display Parameters widget to your application you can now query against all available parameters and select all or just the ones you want to deploy.  
 
-The Maritime Display Parameters widget now comes with a configurable config.json file which allows you to select which controls will be exposed when the user runs query to configure the widget.  There are serveral display parameters that are hidden by default.  All current parameters are listed below. 
+The Maritime Display Parameters widget now comes with a configurable config.json file which allows you to select which controls will be exposed when the user runs query to configure the widget.  There are several display parameters that are hidden by default.  All current parameters are listed below. 
 
 The config.json file can be found under your MaritimeDisplayProperties widget folder.  Starting with 10.6.1 Patch 2 SafetyDepth was added and set to False.  When set to true it will be displayed on the Depth Contours tab below safety contour.  
 
@@ -151,7 +174,7 @@ Current config.json for Display Parameters Widget:
     "PointSymbolizationType": true,
     "RemoveDuplicateText": false,
     "SafetyContour": true,
-    "SafetyDepth": false,
+    "SafetyDepth": true,
     "ShallowContour": true,
     "ShallowDepthPattern": true,
     "TextHalo": false,
@@ -173,7 +196,7 @@ Please note that there are some exceptions when using these widgets against 10.4
 * 10.5 - Label Contours is not supported on the client side so you will need to turn this option off.
 * Prior to 10.6.1 Patch 2: Do not set SafetyDepth to true prior to 10.6.1 Patch 2.  Doing so will break the widget.
 
-#### Once you enable the use of display parameters, your request URL length will typically exceed the maximum length setting on your server.  MCS supports POST but our widgets only support GET. To support the longer URL length when deploying the Display Parameters widget, will need to use a web.config.xml file and increase your URL length.  
+#### Once you enable the use of display parameters, your request URL length will typically exceed the maximum length setting on your server.  MCS supports POST but our sample widgets only support GET. To support the longer URL length when deploying the Display Parameters widget, will need to use a web.config.xml file and increase your URL length.  
 
 ## Search widget:
 
@@ -181,6 +204,8 @@ The search widget is now supported on all versions with one exception.  Searchin
 
 
 ## Additional Deployment steps for the Identify widget:
+
+NOTE: Identify widget will no longer support http://localhost:6080 requests.
 
 If you enable the open this widget automatically when the app starts option, then point identify will be active and you can click on the map without opening the identify widget. 
 
