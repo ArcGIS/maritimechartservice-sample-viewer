@@ -1,4 +1,4 @@
-@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css';
+@import url('bootstrap.min.css');
 <span>
 .mcs-search .search-result {
 	font-size: 16px;
