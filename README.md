@@ -1,3 +1,5 @@
+2021 - Latest release with support through 10.9
+
 20201021 - Latest release with support through 10.8.1
 
 
