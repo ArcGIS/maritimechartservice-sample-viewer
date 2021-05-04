@@ -108,7 +108,7 @@ define([
       var operLayers = this.map.webMapResponse.itemInfo.itemData.operationalLayers;
       var title = null;
       for (var j = 0; j < operLayers.length; j++) {
-        if ((layer) && !(layer.displayParameters) && (layer == operLayers[j])) {
+        if ((layer) && !(layer.displayParameters) && (layer.id == operLayers[j].id)) {
           title = operLayers[j].title;
         }
       }
