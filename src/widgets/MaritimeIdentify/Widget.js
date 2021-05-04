@@ -32,7 +32,7 @@ define(['dojo/_base/declare', 'jimu/BaseWidget', 'jimu/dijit/DrawBox', 'libs/mcs
                 }
 
                 if (!flagHasMCSLayer) {
-                    console.log("This map has no Maritime Chart Service Layer");
+                    this.identifyNode.innerHTML = "This map has no Maritime Chart Service Layer";
                 } else {
                     this.Identify = new Identify({
                         map: this.map

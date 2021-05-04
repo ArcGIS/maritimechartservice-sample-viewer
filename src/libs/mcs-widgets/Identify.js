@@ -174,6 +174,7 @@ define([
               "id": layer.id,
               "description": layer.description
             });
+            s57CustomLayer.title = this._getLayerTitle(layer);
             s57CustomLayer.setVisibleLayers(layer.visibleLayers);
             on(s57CustomLayer, 'parametersLoaded', lang.hitch(this, function (layer, s57CustomLayer, j) {
               // add s57CustomLayer after parametersLoaded, otherwise it will miss some properties' information, like layerInfos, 

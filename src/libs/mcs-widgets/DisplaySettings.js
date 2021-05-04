@@ -180,6 +180,7 @@ define([
         "id": layer.id,
         "description": layer.description
       });
+      this.MCSLayersConfig[layer.id].s57CustomLayer.title = this._getLayerTitle(layer);
       this.MCSLayersConfig[layer.id].s57CustomLayer.setVisibleLayers(layer.visibleLayers);
       on(this.MCSLayersConfig[layer.id].s57CustomLayer, 'parametersLoaded', lang.hitch(this, function (layer) {
         if (!(layer.id in this.MCSLayersConfig)){

@@ -92,9 +92,11 @@ define([
                                 case "TwoDepthShades":
                                 case "TextHalo":
                                 case "RemoveDuplicateText":
+                                case "DisplayBathymetricIENC":
                                 case "DisplayLightSectors":
                                 case "DisplaySafeSoundings":
                                 case "DateDependencySymbols":
+                                case "MovingCentroid":
                                     if (params[j].value == "2")
                                         this[ctrlArr[i] + "Ctrl"].set("checked", true);
                                     break;
@@ -263,6 +265,12 @@ define([
                     }
                 }
             })));
+        if (this["DisplayBathymetricIENCCtrl"])
+            this.own(on(this.DisplayBathymetricIENCCtrl, 'change', lang.hitch(this, function () {
+                var parametersArray = this.MCSLayerConfig.s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+                parametersArray[MCSWidgetUtilities.findParameter(parametersArray, "DisplayBathymetricIENC")].value = _this.DisplayBathymetricIENCCtrl.checked ? 2 : 1;
+                this.MCSLayerConfig.s57CustomLayer.refresh();
+            })));
         if (this["DisplayFramesCtrl"])
             this.own(on(this.DisplayFramesCtrl, 'change', lang.hitch(this, function () {
                 var parametersArray = this.MCSLayerConfig.s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
@@ -285,6 +293,12 @@ define([
             this.own(on(this.DisplaySafeSoundingsCtrl, 'change', lang.hitch(this, function () {
                 var parametersArray = this.MCSLayerConfig.s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
                 parametersArray[MCSWidgetUtilities.findParameter(parametersArray, "DisplaySafeSoundings")].value = _this.DisplaySafeSoundingsCtrl.checked ? 2 : 1;
+                this.MCSLayerConfig.s57CustomLayer.refresh();
+            })));
+        if (this["MovingCentroidCtrl"])
+            this.own(on(this.MovingCentroidCtrl, 'change', lang.hitch(this, function () {
+                var parametersArray = this.MCSLayerConfig.s57CustomLayer.displayParameters.ECDISParameters.DynamicParameters.Parameter;
+                parametersArray[MCSWidgetUtilities.findParameter(parametersArray, "MovingCentroid")].value = _this.MovingCentroidCtrl.checked ? 2 : 1;
                 this.MCSLayerConfig.s57CustomLayer.refresh();
             })));
         if (this["RemoveDuplicateTextCtrl"])

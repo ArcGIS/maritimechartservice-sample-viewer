@@ -30,7 +30,7 @@ define(['dojo/_base/declare', 'jimu/BaseWidget', 'libs/mcs-widgets/Search'],
                 }
 
                 if (this.s57Layers.length == 0) {
-                    this.maritimeSearchNode.innerHTML = "This map has no S-57 Maritime Chart Service Layer";
+                    this.maritimeSearchNode.innerHTML = "This map has no Maritime Chart Service Layer";
 
                 } else {
                     this.maritimeSearch = new MaritimeSearch({
