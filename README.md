@@ -1,4 +1,5 @@
-20210504 - Latest release with support through 10.9
+# May 3, 2021 - Latest release with support through 10.9
+
 
 # Maritime Chart Service sample widgets
 ## (Web App Builder widgets)
@@ -23,12 +24,12 @@ Note: Only MCS mapserver services are supported with these widgets.
   * Moving Centroid
 * Tested with WAB 2.19
 
-## Items included with previous release (20201021)
+## Items included with previous release (Oct 21, 2020)
 * Added multiple MCS service support to Display Properties, Identify, and Search widgets.
 * Updated Display Properties configuration steps to support multiple MCS services under deployment.
 * Tested with WAB 2.17
 
-## Items included with previous release (20190502)
+## Items included with previous release (May 2, 2019)
 
 * Added support for the following display parameters:
   * Safe Depth
