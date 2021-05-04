@@ -1,4 +1,4 @@
-202105XX - Latest release with support through 10.9
+20210504 - Latest release with support through 10.9
 
 # Maritime Chart Service sample widgets
 ## (Web App Builder widgets)
