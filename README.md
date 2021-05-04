@@ -1,9 +1,7 @@
-20201021 - Latest release with support through 10.8.1
-
+20210504 - Latest release with support through 10.9
 
 # Maritime Chart Service sample widgets
 ## (Web App Builder widgets)
-
 
 The Maritime Chart Service widgets are widgets and dojo classes that illustrate how web applications can consume and interact with the Maritime Chart Service exposed by the ArcGIS Maritime Sever Extension product https://www.esri.com/en-us/arcgis/products/arcgis-maritime/deployment/server-extension
 
@@ -11,29 +9,35 @@ The widgets can be used directly within Web App Builder for ArcGIS. Alternativel
 
 To view a sample application created with these widgets please visit http://esriho.maps.arcgis.com/home/index.html and click on one of the Maritime Chart Service applications.
 
+With added support for multiple MCS services you can author a map with one or more MCS services and use all three sample widgets with each service.  Even if you use the Add Data widget to add another MCS service to your map, you can refresh your MCS sample widgets to recognize and work with any newly added MCS service.
+
 Note: Only MCS mapserver services are supported with these widgets.
 
 
 ## * What's new with this version
+* Added warning to Maritime Identify widget if the map does not contain a valid MCS Layer.
+* MCS layer name is retained and consistant throughout all MCS widgets.
+* Various fixes related to multiple MCS service support.
+* Added support for the following display parameters:
+  * Display Bathymetric IENC datasets
+  * Moving Centroid
+* Tested with WAB 2.19
+
+## Items included with previous release (20201021)
 * Added multiple MCS service support to Display Properties, Identify, and Search widgets.
-* Updated Display Properties configuration steps to support multiple MCS services.
+* Updated Display Properties configuration steps to support multiple MCS services under deployment.
+* Tested with WAB 2.17
 
-With added support for multiple MCS services you can now author a map with one or more MCS services and use all three sample widgets with each service.  Even if you use the Add Data widget to add another MCS service to your map, you can refresh your MCS sample widgets to recognize and work with any newly added MCS service.
+## Items included with previous release (20190502)
 
-## * Added new Multiple MCS Services support section under deployment
-## * Tested against WAB 2.17 and JavaScript API 3.29
-
-Items included with previous release (20190502)
-## * Added support for the following display parameters
-* Safe Depth
-* Display Light Sectors
-* Display AIO Features
-* Display Safe Soundings
-* Date Dependency Symbol (new as of 20190502)
-* Date Dependency Range  (new as of 20190502)
-* Updated identify to automatically send display_params in the request.  This will ensure that every identify request honors any changes to the Date Dependency Range. (new as of 20190502)
-
-
+* Added support for the following display parameters:
+  * Safe Depth
+  * Display Light Sectors
+  * Display AIO Features
+  * Display Safe Soundings
+  * Date Dependency Symbol (new as of 20190502)
+  * Date Dependency Range  (new as of 20190502)
+  * Updated identify to automatically send display_params in the request.  This will ensure that every identify request honors any changes to the Date Dependency Range. (new as of 20190502)
 
 ## Sections
 
@@ -48,15 +52,15 @@ Items included with previous release (20190502)
 ## Features
 
 These sample Web App Builder widgets illustrate how to build web apps consuming S-57/S-63 web services published from ArcGIS Maritime Server Extension in a JavaScript web app.
-* Allows users to change S-52 based display settings through the JavaScript client
-* Enables users to identify on individual features and view their attribute information.
-* Provides the ability to search based on object name (OBJNAM), national object name (NOBJNM) and dataset names.
+* Allows users to change S-52 based display settings through the client application.
+* Enables users to identify on individual features and view their attribute information and associated external files.
+* Provides the ability to search based on object name (OBJNAM), national object name (NOBJNM) and dataset name.
 
 The Widget Repository currently includes:
 
 ### Maritime Chart Service Library
 
-This is a library of custom Esri widgets and custom layer classes that extend Esri's JSAPI in order to consume the Maritime Chart Service in apps. 
+This is a library of custom Esri widgets and custom layer classes that extend Esri's JSAPI in order to consume the Maritime Chart Service in applications. 
 
 ### Web App Builder Widgets
 
@@ -66,12 +70,9 @@ The following are custom Web App Builder widgets that use the maritime chart ser
 * Maritime Identify
 * Maritime Search
 
-
 ## Requirements
 * Web App Builder for ArcGIS (Developer Edition) 2.10 or greater for the Web App builder widgets.
-* Maritime Chart Service widgets require JS API 3.19 or greater. 
-* ArcGIS Maritime Server Extension 10.5/10.5.1, 10.6/10.6.1, 10.7/10.7.1, 10.8/10.8.1
-
+* ArcGIS Maritime Server Extension 10.5/10.5.1, 10.6/10.6.1, 10.7/10.7.1, 10.8/10.8.1, 10.9
 
 ## Deployment
 
@@ -92,7 +93,7 @@ Adding Widgets to you Web AppBuilder Environment:
 ```
 
 ## Create a Web App using the Maritime Chart Service:
-When creating a Web App, you need to choose the Web Map that will be used by the App. In order to use the maritime widgets, make sure that the Web Map you choose contains a Maritime Chart Service layer. This Web Map must first be created and available in your ArcGIS Online account. If you don't have a access to a Web Map that contains the Maritime Chart Service, you can create one in your ArcGIS Online account.
+When creating a Web AppBuilder application, you need to choose the Web Map that will be used by the App. In order to use the maritime widgets, make sure that the Web Map you choose contains a Maritime Chart Service layer.  Only the MapServer layer is supported by the sample widgets. This Web Map must first be created and available in your ArcGIS Online account. If you don't have a access to a Web Map that contains the Maritime Chart Service, you can create one in your ArcGIS Online account.
 
 * Log in to your ArcGIS Online account
 * Create a new Map
@@ -117,27 +118,27 @@ If the machine is in domain, it is sometimes required to include domain name alo
 The Web Map is now using the Maritime Chart Service, and can be selected when you create your App in Web AppBuilder
 
 ## Multiple MCS Services support
-Multiple MCS services support allows you to deploy the sample widgets with a map that contains one or more MCS services.  If you deploy with more than one MCS service, you must set the Display Properties for each service by selecting the service in the drop-down menu and choosing the display parameters you want to expose.  Then you repeat the process for the other MCS services before click done.  There are not additional deployment steps for Identify and Search.
+Multiple MCS services support allows you to deploy the sample widgets with a map that contains one or more MCS services.  If you deploy with more than one MCS service, you must set the Display Properties for each service by selecting the service in the drop-down menu and choosing the display parameters you want to expose.  Then you repeat the process for the other MCS services before clicking OK.  There are no additional deployment steps for Identify and Search.
 
 If a user adds another MCS service using the Add Data button after the application has been deployed, all the available display properties for that service will be exposed to the user.  Users must click the refresh button on each MCS sample widget for the newly added service to be available.
 
-Both the Identify and Search widget allow you to select which services you want to use as part of the request.  You can either use Identify and Search on one or all of the available services at once.   The Display Properties widget must be used on one service at a time.  The display options for each service will be retained during your session.
+Both the Identify and Search widget allow you to select which MCS services you want to use as part of the request.  You can either use Identify and Search on one or all of the available MCS services at once.   The Display Properties widget must be used on one MCS service at a time.  The display options for each service will be retained during your session.
 
 NOTE: There is a known limitation that when you use the add data button to add an MCS Service, you will not be able to remove it.  However, you can uncheck that service from your widgets to keep it from being interacted with.
 
 ## Deployment options for Maritime Display Parameters:
 
-When you add the Maritime Display Parameters widget to your application you can now query against all available parameters and select all or just the ones you want to deploy.  
+When you add the Maritime Display Parameters widget to your application you can query against all available parameters and select all or just the ones you want to deploy.  
 
-The Maritime Display Parameters widget now comes with a configurable config.json file which allows you to select which controls will be exposed when the user runs query to configure the widget.  There are several display parameters that are hidden by default.  All current parameters are listed below. 
+The Maritime Display Parameters widget comes with a configurable config.json file which allows you to select which controls will be exposed when the user runs query to configure the widget.  There are several display parameters that are hidden by default.  All current parameters are listed below. 
 
-The config.json file can be found under your MaritimeDisplayProperties widget folder.  Starting with 10.6.1 Patch 2 SafetyDepth was added and set to False.  When set to true it will be displayed on the Depth Contours tab below safety contour.  
+The config.json file can be found under your MaritimeDisplayProperties widget folder.  
 
 #### Do not set SafetyDepth to true prior to 10.6.1 Patch 2.  Doing so will break the widget.
 
-DisplaySafeSoundings is dependent on SafetyDepth.  Only set DisplaySafeSounding to true if you set SafetyDepth to true.
+DisplaySafeSoundings is dependent on SafetyDepth.  Only set DisplaySafeSounding to true if you set SafetyDepth to true.  By default both are set to true.
 
-The following parameters when set to true will be exposed on a new tab named symbol size.  They are set to false by default.
+The following parameters when set to true, will be exposed on a new tab named symbol size.  They are set to false by default.
 * AreaSymbolSize
 * DatasetDisplayRange
 * LineSymbolSize
@@ -156,6 +157,7 @@ Current config.json for Display Parameters Widget:
     "DateDependencyRange": true,
     "DateDependencySymbols": true,
     "DeepContour": true,
+    "DisplayBathymetricIENC": true,
     "DisplayCategory": true,
     "DisplayAIOFeatures": true,
     "DisplayDepthUnits": true,
@@ -170,6 +172,7 @@ Current config.json for Display Parameters Widget:
     "IsolatedDangers": true,
     "LabelContours": true,
     "LabelSafetyContours": true,
+    "MovingCentroid": true,
     "OptionalDeepSoundings": true,
     "PointSymbolizationType": true,
     "RemoveDuplicateText": false,
@@ -205,7 +208,7 @@ The search widget is now supported on all versions with one exception.  Searchin
 
 ## Additional Deployment steps for the Identify widget:
 
-NOTE: Identify widget will no longer support http://localhost:6080 requests.
+NOTE: Identify widget will no longer support https://localhost:6443 requests.
 
 If you enable the open this widget automatically when the app starts option, then point identify will be active and you can click on the map without opening the identify widget. 
 
